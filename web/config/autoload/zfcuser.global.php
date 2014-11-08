@@ -215,7 +215,7 @@ $settings = array(
     /**
      * User table name
      */
-    //'table_name' => 'user',
+    'table_name' => 'users',
     
     /**
      * End of ZfcUser configuration

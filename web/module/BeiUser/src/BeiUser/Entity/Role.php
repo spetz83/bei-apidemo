@@ -37,7 +37,7 @@ class Role implements HierarchicalRoleInterface
 
     /**
      * @var Role
-     * @ORM\ManyToOne(targetEntity="MyNamespace\Role")
+     * @ORM\ManyToOne(targetEntity="BeiUser\Entity\Role")
      */
     protected $parent;
 
