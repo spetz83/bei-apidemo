@@ -7,6 +7,34 @@
  */
 
 return array(
+    'controllers' => array(
+        'invokables' => array(
+            //'BeiUser\Controller\Admin' => 'BeiUser\Controller\AdminController',
+        ),
+    ),
+    'router' => array(
+        'routes' => array(
+            'BeiUser\admin' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/user/admin[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'BeiUser\Controller\Admin',
+                        'action' => 'index',
+                    ),
+                ),
+            ),
+        ),
+    ),
+    'view_manager' => array(
+        'template_path_stack' => array(
+            'admin' => __DIR__ . '/../view',
+        ),
+    ),
     'doctrine' => array(
         'driver' => array(
             'zfcuser_entity' => array(
@@ -28,8 +56,21 @@ return array(
         'identity_provider' => 'BjyAuthorize\Provider\Identity\AuthenticationIdentityProvider',
         'role_providers' => array(
             'BjyAuthorize\Provider\Role\ObjectRepositoryProvider' => array(
-                'object_manager'    => 'doctrine.entity_manager.orm_default',
+                'object_manager'    => 'doctrine.entitymanager.orm_default',
                 'role_entity_class' => 'BeiUser\Entity\Role',
+            ),
+        ),
+        'guards' => array(
+            /*
+             * This is where you can block whole controllers or specific actions based on role.
+             */
+
+            'BjyAuthorize\Guard\Controller' => array(
+                array(
+                    'controller' => 'BeiUser\Controller\Admin',
+                    'action' => array('index'),
+                    'roles' => array('user'),
+                ),
             ),
         ),
     ),
