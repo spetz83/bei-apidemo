@@ -69,7 +69,7 @@ return array(
                 array(
                     'controller' => 'BeiUser\Controller\Admin',
                     'action' => array('index'),
-                    'roles' => array('user'),
+                    'roles' => array('guest'),
                 ),
             ),
         ),

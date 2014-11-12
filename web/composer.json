@@ -11,7 +11,6 @@
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.3.*",
         "doctrine/doctrine-orm-module": "0.*",
-        "doctrine/data-fixtures": "dev-master",
         "zendframework/zend-developer-tools": "dev-master",
         "zf-commons/zfc-user-doctrine-orm": "~1.0",
         "bjyoungblood/bjy-authorize": "1.4.*"
