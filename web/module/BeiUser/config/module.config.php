@@ -8,8 +8,8 @@
 
 return array(
     'controllers' => array(
-        'invokables' => array(
-            //'BeiUser\Controller\Admin' => 'BeiUser\Controller\AdminController',
+        'factories' => array(
+            'BeiUser\Controller\Admin' => 'BeiUser\Controller\Factories\AdminControllerFactory',
         ),
     ),
     'router' => array(
