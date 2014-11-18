@@ -9,6 +9,7 @@
 namespace BeiUser\Controller;
 
 use BeiUser\Entity\UserRepository;
+use BeiUser\Form\UserForm;
 use Doctrine\ORM\EntityManager;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -25,10 +26,16 @@ class AdminController extends AbstractActionController
      */
     private $userRepo;
 
-    public function __construct(EntityManager $em, UserRepository $userRepository)
+    /**
+     * @var UserForm $userForm
+     */
+    private $userForm;
+
+    public function __construct(EntityManager $em, UserRepository $userRepository, UserForm $userForm)
     {
         $this->em = $em;
         $this->userRepo = $userRepository;
+        $this->userForm = $userForm;
     }
 
     public function indexAction()
@@ -36,6 +43,13 @@ class AdminController extends AbstractActionController
         $users = $this->userRepo->findAll();
         $numUsers = count($users);
         return new ViewModel(array('numUsers'=>$numUsers));
+    }
+
+    public function addAction()
+    {
+        $form = $this->userForm;
+
+        return new ViewModel(array('form'=> $form));
     }
 
 } 

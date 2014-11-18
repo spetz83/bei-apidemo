@@ -20,7 +20,7 @@ class AdminControllerFactory implements FactoryInterface
         $sm = $serviceLocator->getServiceLocator();
         $em = $sm->get('Doctrine\ORM\EntityManager');
         $userRepo = $em->getRepository('BeiUser\Entity\User');
-
-        return new AdminController($em, $userRepo);
+        $userForm = $sm->get('FormElementManager')->get('BeiUser\Form\UserForm');
+        return new AdminController($em, $userRepo, $userForm);
     }
 } 

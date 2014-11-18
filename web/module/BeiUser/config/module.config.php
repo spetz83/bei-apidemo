@@ -12,6 +12,11 @@ return array(
             'BeiUser\Controller\Admin' => 'BeiUser\Controller\Factories\AdminControllerFactory',
         ),
     ),
+    'form_elements' =>array(
+        'factories' => array(
+            'BeiUser\Form\UserForm' => 'BeiUser\Form\Factories\UserFormFactory',
+        ),
+    ),
     'router' => array(
         'routes' => array(
             'BeiUser\admin' => array(
@@ -68,7 +73,7 @@ return array(
             'BjyAuthorize\Guard\Controller' => array(
                 array(
                     'controller' => 'BeiUser\Controller\Admin',
-                    'action' => array('index'),
+                    'action' => array('index', 'add'),
                     'roles' => array('guest'),
                 ),
             ),
