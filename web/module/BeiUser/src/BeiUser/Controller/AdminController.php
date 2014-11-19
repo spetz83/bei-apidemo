@@ -31,11 +31,15 @@ class AdminController extends AbstractActionController
      */
     private $userForm;
 
-    public function __construct(EntityManager $em, UserRepository $userRepository, UserForm $userForm)
+    private $config;
+
+    public function __construct(EntityManager $em, UserRepository $userRepository, UserForm $userForm, $config)
     {
         $this->em = $em;
         $this->userRepo = $userRepository;
         $this->userForm = $userForm;
+        $this->config = $config;
+        $this->userRepo->setHashCost($this->config['zfcuser']['password_cost']);
     }
 
     public function indexAction()
@@ -48,6 +52,19 @@ class AdminController extends AbstractActionController
     public function addAction()
     {
         $form = $this->userForm;
+
+        $request = $this->getRequest();
+
+        if($request->isPost())
+        {
+            $form->setData($request->getPost());
+            //if($form->isValid())
+            //{
+                $form->isValid();
+                $this->userRepo->buildUser($form->getData());
+                return $this->redirect()->toRoute('BeiUser\admin');
+            //}
+        }
 
         return new ViewModel(array('form'=> $form));
     }

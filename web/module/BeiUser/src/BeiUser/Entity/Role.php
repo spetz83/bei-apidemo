@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * An example entity that represents a role.
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="UserRepository")
  * @ORM\Table(name="role")
  *
  * @author Tom Oram <tom@scl.co.uk>

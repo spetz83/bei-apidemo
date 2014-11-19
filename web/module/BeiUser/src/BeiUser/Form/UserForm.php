@@ -11,13 +11,9 @@ namespace BeiUser\Form;
 
 use Doctrine\ORM\EntityManager;
 use Zend\Form\Form;
-use Zend\InputFilter\Factory as InputFactory;
-use Zend\InputFilter\InputFilter;
-use Zend\InputFilter\InputFilterAwareInterface;
 
-class UserForm extends Form implements InputFilterAwareInterface
+class UserForm extends Form
 {
-    protected $inputFilter;
 
     /**
      * @var EntityManager $em
@@ -113,23 +109,5 @@ class UserForm extends Form implements InputFilterAwareInterface
             ),
         ));
 
-    }
-
-    // Form's Input Filter / Validator
-    public function getInputFilter()
-    {
-        if (!$this->inputFilter) {
-            $inputFilter = new InputFilter();
-            $factory     = new InputFactory();
-
-            $inputFilter->add($factory->createInput(array(
-                'name'     => 'activities',
-                'required' => true,
-            )));
-
-            $this->inputFilter = $inputFilter;
-        }
-
-        return $this->inputFilter;
     }
 }
