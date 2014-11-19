@@ -1,0 +1,65 @@
+#################
+# Start Zend    #
+#################
+INSTALL.txt
+LICENSE.txt
+*/**/README.md
+demos/
+extras/documentation
+#################
+# End Zend      #
+#################
+
+#====InteliJ====
+*.iml
+*.ipr
+*.iws
+.idea/
+
+#====Netbeans====
+nbproject/
+
+#====SublimeText====
+*.sublime-workspace
+
+#====Nodejs====
+node_modules/
+id
+npm-debug.log
+
+#====SASS====
+*.sass-cache
+
+#====Don't squash VM IDs====
+vagrant/.vagrant
+vagrant/.vagrant/machines/default/virtualbox/id
+vagrant/manifests/npm-debug.log
+
+#====Gross Unix Files====
+*~
+\#*\#
+.\#*
+
+#====Gross OSX files====
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+#====Gross Windows files====
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
