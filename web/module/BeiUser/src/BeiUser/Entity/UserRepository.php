@@ -19,7 +19,7 @@ class UserRepository extends EntityRepository
     public function buildUser($data)
     {
         $user = new User();
-        $user->setUsername($data['username']);
+        //$user->setUsername($data['username']);
         $user->setEmail($data['email']);
         $user->setDisplayName($data['displayName']);
         $user->setPassword($this->createPassword($data['password']));
