@@ -46,7 +46,7 @@ class AdminController extends AbstractActionController
     {
         $users = $this->userRepo->findAll();
         $numUsers = count($users);
-        return new ViewModel(array('numUsers'=>$numUsers));
+        return new ViewModel(array('numUsers' => $numUsers));
     }
 
     public function addAction()
@@ -55,18 +55,16 @@ class AdminController extends AbstractActionController
 
         $request = $this->getRequest();
 
-        if($request->isPost())
-        {
+        if ($request->isPost()) {
             $form->setData($request->getPost());
             //if($form->isValid())
             //{
-                $form->isValid();
-                $this->userRepo->buildUser($form->getData());
-                return $this->redirect()->toRoute('BeiUser\admin');
+            $form->isValid();
+            $this->userRepo->buildUser($form->getData());
+            return $this->redirect()->toRoute('BeiUser\admin');
             //}
         }
 
-        return new ViewModel(array('form'=> $form));
+        return new ViewModel(array('form' => $form));
     }
-
-} 
+}

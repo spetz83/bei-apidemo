@@ -34,5 +34,4 @@ class BeiUserListener extends AbstractListenerAggregate
         //TODO: Do things after the user has been registered
     }
 }
-
 ?>
