@@ -30,14 +30,16 @@ class UserForm extends Form implements InputFilterAwareInterface
 
         parent::__construct('user');
         $this->setAttribute('method', 'post');
+        $this->setAttribute('class', 'form-horizontal');
 
         $this->add(array(
             'name' => 'username',
             'attributes' => array(
                 'type' => 'text',
+                'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Username:'
+                'label' => 'Username:',
             ),
         ));
 
@@ -45,6 +47,7 @@ class UserForm extends Form implements InputFilterAwareInterface
             'name' => 'email',
             'attributes' => array(
                 'type' => 'text',
+                'class' => 'form-control',
             ),
             'options' => array(
                 'label' => 'Email:'
@@ -55,6 +58,7 @@ class UserForm extends Form implements InputFilterAwareInterface
             'name' => 'displayName',
             'attributes' => array(
                 'type' => 'text',
+                'class' => 'form-control',
             ),
             'options' => array(
                 'label' => 'Display Name:'
@@ -65,6 +69,7 @@ class UserForm extends Form implements InputFilterAwareInterface
             'name' => 'password',
             'attributes' => array(
                 'type' => 'password',
+                'class' => 'form-control',
             ),
             'options' => array(
                 'label' => 'Password:'
@@ -75,6 +80,7 @@ class UserForm extends Form implements InputFilterAwareInterface
             'name' => 'password2',
             'attributes' => array(
                 'type' => 'password',
+                'class' => 'form-control',
             ),
             'options' => array(
                 'label' => 'Confirm Password:'
@@ -84,6 +90,9 @@ class UserForm extends Form implements InputFilterAwareInterface
         $this->add(array(
             'type' => 'DoctrineModule\Form\Element\ObjectSelect',
             'name' => 'role',
+            'attributes' => array(
+                'class' => 'form-control',
+            ),
             'options' => array(
                 'object_manager' => $this->em,
                 'target_class' => 'BeiUser\Entity\Role',
