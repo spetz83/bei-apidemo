@@ -57,12 +57,11 @@ class AdminController extends AbstractActionController
 
         if ($request->isPost()) {
             $form->setData($request->getPost());
-            //if($form->isValid())
-            //{
-            $form->isValid();
-            $this->userRepo->buildUser($form->getData());
-            return $this->redirect()->toRoute('BeiUser\admin');
-            //}
+            if($form->isValid())
+            {
+                $this->userRepo->buildUser($form->getData());
+                return $this->redirect()->toRoute('BeiUser\admin');
+            }
         }
 
         return new ViewModel(array('form' => $form));
