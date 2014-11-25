@@ -33,6 +33,20 @@ return array(
                     ),
                 ),
             ),
+            'BeiUser\users' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/user/admin/list[/:action][page/:page]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'page' => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'BeiUser\Controller\Admin',
+                        'action' => 'list',
+                    ),
+                ),
+            ),
         ),
     ),
     'view_manager' => array(

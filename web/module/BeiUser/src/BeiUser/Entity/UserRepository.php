@@ -30,6 +30,11 @@ class UserRepository extends EntityRepository
         $this->getEntityManager()->flush();
     }
 
+    public function getPagedUsers()
+    {
+
+    }
+
     private function createPassword($ptPassword)
     {
         $bcrypt = new Bcrypt();
