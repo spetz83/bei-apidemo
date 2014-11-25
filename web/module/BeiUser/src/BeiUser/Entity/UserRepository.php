@@ -12,7 +12,7 @@ namespace BeiUser\Entity;
 use Doctrine\ORM\EntityRepository;
 use Zend\Crypt\Password\Bcrypt;
 
-class UserRepository extends EntityRepository
+class UserRepository extends EntityRepository implements PaginatedEntityInterface
 {
     protected $passwordHashCost;
 
@@ -30,7 +30,12 @@ class UserRepository extends EntityRepository
         $this->getEntityManager()->flush();
     }
 
-    public function getPagedUsers()
+    public function getItems($offset, $itemCountPerPage)
+    {
+
+    }
+
+    public function count()
     {
 
     }
