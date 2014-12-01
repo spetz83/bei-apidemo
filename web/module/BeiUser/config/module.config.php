@@ -17,6 +17,11 @@ return array(
             'BeiUser\Form\UserForm' => 'BeiUser\Form\Factories\UserFormFactory',
         ),
     ),
+    'service_manager' => array(
+        'abstract_factories' => array(
+            'PaginatorAdapter' => 'BeiUser\Paginator\PaginatorServiceFactory',
+        ),
+    ),
     'router' => array(
         'routes' => array(
             'BeiUser\admin' => array(
