@@ -17,11 +17,12 @@ class AdminControllerFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $sm = $serviceLocator->getServiceLocator();
-        $em = $sm->get('Doctrine\ORM\EntityManager');
-        $userRepo = $em->getRepository('BeiUser\Entity\User');
-        $userForm = $sm->get('FormElementManager')->get('BeiUser\Form\UserForm');
-        $config = $sm->get('Config');
-        return new AdminController($em, $userRepo, $userForm, $config);
+        $serviceManager = $serviceLocator->getServiceLocator();
+        $entityManager = $serviceManager->get('Doctrine\ORM\EntityManager');
+        $userRepo = $entityManager->getRepository('BeiUser\Entity\User');
+        $userForm = $serviceManager->get('FormElementManager')->get('BeiUser\Form\UserForm');
+        $config = $serviceManager->get('Config');
+        $paginator = $serviceManager->get('BeiUser\Paginator\Paginator');
+        return new AdminController($entityManager, $userRepo, $userForm, $config, $paginator);
     }
 } 

@@ -10,11 +10,17 @@ namespace BeiUser\Paginator;
 
 
 use BeiUser\Entity\PaginatedEntityInterface;
+use BeiUser\Entity\UserRepository;
 use Zend\Paginator\Adapter\AdapterInterface;
 
 class PaginatorAdapter implements AdapterInterface
 {
     protected $repository;
+
+    public function __construct(PaginatedEntityInterface $repository)
+    {
+        $this->repository = $repository;
+    }
 
     /**
      * Returns collection of items for the given page
@@ -36,10 +42,5 @@ class PaginatorAdapter implements AdapterInterface
     public function count()
     {
         return $this->repository->count();
-    }
-
-    public function setRepository(PaginatedEntityInterface $repository)
-    {
-        $this->repository = $repository;
     }
 } 

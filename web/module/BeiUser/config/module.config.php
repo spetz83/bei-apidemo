@@ -18,8 +18,8 @@ return array(
         ),
     ),
     'service_manager' => array(
-        'abstract_factories' => array(
-            'PaginatorAdapter' => 'BeiUser\Paginator\PaginatorServiceFactory',
+        'factories' => array(
+            'BeiUser\Paginator\Paginator' => 'BeiUser\Paginator\PaginatorServiceFactory',
         ),
     ),
     'router' => array(
@@ -41,14 +41,14 @@ return array(
             'BeiUser\users' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route' => '/user/admin/list[/:action][page/:page]',
+                    'route' => '/user/admin/list[/:action]/[page/:page]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'page' => '[0-9]+',
                     ),
                     'defaults' => array(
                         'controller' => 'BeiUser\Controller\Admin',
-                        'action' => 'list',
+                        'action' => 'index',
                     ),
                 ),
             ),
@@ -57,6 +57,7 @@ return array(
     'view_manager' => array(
         'template_path_stack' => array(
             'admin' => __DIR__ . '/../view',
+            'partials' => __DIR__ . '/../view/bei-user/partials'
         ),
     ),
     'doctrine' => array(
