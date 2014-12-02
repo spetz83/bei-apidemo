@@ -10,9 +10,10 @@ namespace BeiUser\Entity;
 
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 use Zend\Crypt\Password\Bcrypt;
 
-class UserRepository extends EntityRepository
+class UserRepository extends EntityRepository implements PaginatedEntityInterface
 {
     protected $passwordHashCost;
 
@@ -28,6 +29,26 @@ class UserRepository extends EntityRepository
         $user->addRole($role);
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
+    }
+
+    public function getItems($offset, $itemCountPerPage)
+    {
+        $queryBuilder = $this->getEntityManager()->createQueryBuilder();
+        $queryBuilder->select(array('u.id', 'u.email', 'u.displayName'))
+            ->from('BeiUser\Entity\User', 'u')
+            ->setFirstResult($offset)
+            ->setMaxResults($itemCountPerPage);
+
+        $result = $queryBuilder->getQuery()->getResult(Query::HYDRATE_ARRAY);
+        return $result;
+    }
+
+    public function count()
+    {
+        $queryBuilder = $this->getEntityManager()->createQueryBuilder();
+        $queryBuilder->select(array('u.id'))->from('BeiUser\Entity\User', 'u');
+        $result = $queryBuilder->getQuery()->getResult();
+        return count($result);
     }
 
     private function createPassword($ptPassword)

@@ -17,6 +17,11 @@ return array(
             'BeiUser\Form\UserForm' => 'BeiUser\Form\Factories\UserFormFactory',
         ),
     ),
+    'service_manager' => array(
+        'factories' => array(
+            'BeiUser\Paginator\Paginator' => 'BeiUser\Paginator\PaginatorServiceFactory',
+        ),
+    ),
     'router' => array(
         'routes' => array(
             'BeiUser\admin' => array(
@@ -33,11 +38,26 @@ return array(
                     ),
                 ),
             ),
+            'BeiUser\users' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/user/admin/list[/:action]/[page/:page]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'page' => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'BeiUser\Controller\Admin',
+                        'action' => 'index',
+                    ),
+                ),
+            ),
         ),
     ),
     'view_manager' => array(
         'template_path_stack' => array(
             'admin' => __DIR__ . '/../view',
+            'partials' => __DIR__ . '/../view/bei-user/partials'
         ),
     ),
     'doctrine' => array(
