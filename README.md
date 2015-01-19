@@ -1,3 +1,3 @@
-BEI Zend Framework 2 Skeleton Application
-=========================================
+BEI Zend Framework 2 Skeleton App
+=================================
 

@@ -79,6 +79,29 @@ class User implements UserInterface, ProviderInterface
         $this->roles = new ArrayCollection();
     }
 
+    public function getArrayCopy()
+    {
+        $role = $this->roles[0];
+        $arrayValues = get_object_vars($this);
+        unset($arrayValues['roles']);
+        $arrayValues['password'] = '';
+        $arrayValues['role'] = $role->getId();
+        return $arrayValues;
+    }
+
+    public function populate($data = array())
+    {
+        if (isset($data['id'])) {
+            $this->setId($data['id']);
+        }
+        if (isset($data['displayName'])) {
+            $this->setDisplayName($data['displayName']);
+        }
+        if (isset($data['email'])) {
+            $this->setEmail($data['email']);
+        }
+    }
+
     /**
      * Get id.
      *
@@ -230,6 +253,23 @@ class User implements UserInterface, ProviderInterface
      */
     public function addRole($role)
     {
+        /*
+         * Our systems usually only let users have 1 role since roles inherit perms from one another.
+         * So, first remove previous roles.
+         */
+        $this->roles->clear();
+        //Then add the new role
         $this->roles[] = $role;
+    }
+
+    /**
+     * @return Role
+     */
+    public function getRole()
+    {
+        if(count($this->roles) > 0)
+        {
+            return $this->roles[0];
+        }
     }
 }

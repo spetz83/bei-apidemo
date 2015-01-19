@@ -10,7 +10,6 @@ namespace BeiUser\Controller;
 
 use BeiUser\Entity\UserRepository;
 use BeiUser\Form\UserForm;
-use BeiUser\Paginator\PaginatorAdapter;
 use Doctrine\ORM\EntityManager;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Paginator\Paginator;
@@ -69,7 +68,8 @@ class AdminController extends AbstractActionController
 
         $request = $this->getRequest();
 
-        if ($request->isPost()) {
+        if ($request->isPost())
+        {
             $form->setData($request->getPost());
             if($form->isValid())
             {
@@ -78,6 +78,51 @@ class AdminController extends AbstractActionController
             }
         }
 
+        return new ViewModel(array('form' => $form));
+    }
+
+    public function editAction()
+    {
+        $id = $this->params()->fromRoute('id');
+        $user = $this->userRepo->findOneBy(array('id' => $id));
+        if(!$user)
+        {
+            return $this->getResponse()->setStatusCode(404);
+        }
+
+        $form = $this->userForm;
+        $form->bind($user);
+
+        $request = $this->getRequest();
+
+        if ($request->isPost())
+        {
+            $data = $request->getPost();
+            $form->setData($data);
+            if ($form->isValid())
+            {
+                if(strlen($data['password']) > 0 && $data['password'] == $data['password2'])
+                {
+                    $user->setPassword($this->userRepo->createPassword($data['password']));
+                }
+                if($user->getRole()->getId() != $data['role'])
+                {
+                    $role = $this->em->getRepository('BeiUser\Entity\Role')->find($data['role']);
+                    if($role)
+                    {
+                        $user->addRole($role);
+                    }
+                    else
+                    {
+                        //TODO: Handle phantom role
+                    }
+                }
+                $this->em->persist($user);
+                $this->em->flush();
+                return $this->redirect()->toRoute('BeiUser\admin');
+            }
+            //TODO: Handle alerting user of problems with form submission
+        }
         return new ViewModel(array('form' => $form));
     }
 }

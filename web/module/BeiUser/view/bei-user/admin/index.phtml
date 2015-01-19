@@ -12,6 +12,7 @@
                                 <th>ID</th>
                                 <th>Email</th>
                                 <th>Display Name</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -20,6 +21,7 @@
                                     <td><?php echo $user['id']; ?></td>
                                     <td><?php echo $user['email']; ?></td>
                                     <td><?php echo $user['displayName']; ?></td>
+                                    <td><a href="<?php echo $this->url('BeiUser\admin', array('action' => 'edit', 'id' => $user['id'])); ?>">Edit</a></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

@@ -51,7 +51,7 @@ class UserRepository extends EntityRepository implements PaginatedEntityInterfac
         return count($result);
     }
 
-    private function createPassword($ptPassword)
+    public function createPassword($ptPassword)
     {
         $bcrypt = new Bcrypt();
         $bcrypt->setCost($this->passwordHashCost);

@@ -10,7 +10,6 @@ namespace BeiUser\Paginator;
 
 
 use BeiUser\Entity\PaginatedEntityInterface;
-use BeiUser\Entity\UserRepository;
 use Zend\Paginator\Adapter\AdapterInterface;
 
 class PaginatorAdapter implements AdapterInterface

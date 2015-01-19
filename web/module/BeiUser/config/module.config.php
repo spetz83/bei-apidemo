@@ -93,7 +93,7 @@ return array(
             'BjyAuthorize\Guard\Controller' => array(
                 array(
                     'controller' => 'BeiUser\Controller\Admin',
-                    'action' => array('index', 'add'),
+                    //'action' => array('index', 'add'),
                     'roles' => array('guest'),
                 ),
             ),

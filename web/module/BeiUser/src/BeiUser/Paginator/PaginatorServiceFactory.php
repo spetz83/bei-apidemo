@@ -10,7 +10,6 @@ namespace BeiUser\Paginator;
 
 
 use Zend\Paginator\Paginator;
-use Zend\ServiceManager\AbstractFactoryInterface;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
