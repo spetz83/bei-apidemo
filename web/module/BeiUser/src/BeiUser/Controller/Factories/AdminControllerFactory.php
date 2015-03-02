@@ -23,6 +23,9 @@ class AdminControllerFactory implements FactoryInterface
         $userForm = $serviceManager->get('FormElementManager')->get('BeiUser\Form\UserForm');
         $config = $serviceManager->get('Config');
         $paginator = $serviceManager->get('BeiUser\Paginator\Paginator');
+
+        $userRepo->setHashCost($config['zfcuser']['password_cost']);
+
         return new AdminController($entityManager, $userRepo, $userForm, $config, $paginator);
     }
 } 

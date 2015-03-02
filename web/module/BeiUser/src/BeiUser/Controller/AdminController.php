@@ -53,7 +53,6 @@ class AdminController extends AbstractActionController
         $this->userForm = $userForm;
         $this->paginator = $paginator;
         $this->config = $config;
-        $this->userRepo->setHashCost($this->config['zfcuser']['password_cost']);
     }
 
     public function indexAction()
