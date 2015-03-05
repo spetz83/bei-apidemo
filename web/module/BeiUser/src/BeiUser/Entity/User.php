@@ -24,6 +24,10 @@ use ZfcUser\Entity\UserInterface;
  */
 class User implements UserInterface, ProviderInterface
 {
+    const STATE_ACTIVE = 'Active';
+
+    const STATE_DISABLED = 'Disabled';
+
     /**
      * @var int
      * @ORM\Id
@@ -58,6 +62,7 @@ class User implements UserInterface, ProviderInterface
 
     /**
      * @var int
+     * @ORM\Column(type="integer", length=2)
      */
     protected $state;
 
@@ -91,13 +96,16 @@ class User implements UserInterface, ProviderInterface
 
     public function populate($data = array())
     {
-        if (isset($data['id'])) {
+        if (isset($data['id']))
+        {
             $this->setId($data['id']);
         }
-        if (isset($data['displayName'])) {
+        if (isset($data['displayName']))
+        {
             $this->setDisplayName($data['displayName']);
         }
-        if (isset($data['email'])) {
+        if (isset($data['email']))
+        {
             $this->setEmail($data['email']);
         }
     }

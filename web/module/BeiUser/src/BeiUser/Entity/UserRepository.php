@@ -27,6 +27,7 @@ class UserRepository extends EntityRepository implements PaginatedEntityInterfac
         $roleRepo = $this->getEntityManager()->getRepository('BeiUser\Entity\Role');
         $role = $roleRepo->findOneBy(array('id'=>$data['role']));
         $user->addRole($role);
+        $user->setState(1);
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
     }
@@ -34,7 +35,7 @@ class UserRepository extends EntityRepository implements PaginatedEntityInterfac
     public function getItems($offset, $itemCountPerPage)
     {
         $queryBuilder = $this->getEntityManager()->createQueryBuilder();
-        $queryBuilder->select(array('u.id', 'u.email', 'u.displayName'))
+        $queryBuilder->select(array('u.id', 'u.email', 'u.displayName', 'u.state'))
             ->from('BeiUser\Entity\User', 'u')
             ->setFirstResult($offset)
             ->setMaxResults($itemCountPerPage);
