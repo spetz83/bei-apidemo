@@ -23,8 +23,11 @@
                                     <td><?php echo $user['id']; ?></td>
                                     <td><?php echo $user['email']; ?></td>
                                     <td><?php echo $user['displayName']; ?></td>
-                                    <td><?php echo $user[''</td>
-                                    <td><a href="<?php echo $this->url('BeiUser\admin', array('action' => 'edit', 'id' => $user['id'])); ?>">Edit</a></td>
+                                    <td><?php echo $user['state']; ?></td>
+                                    <td>
+                                        <a href="<?php echo $this->url('BeiUser\admin', array('action' => 'edit', 'id' => $user['id'])); ?>">Edit</a> |
+                                        <a id="stateChangeLink" href="#">Disable</a>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
