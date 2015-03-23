@@ -24,8 +24,9 @@ nbproject/
 
 #====Nodejs====
 node_modules/
+bower_components/
 id
-npm-debug.log
+npm-debug.log.*
 
 #====SASS====
 *.sass-cache
