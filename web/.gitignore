@@ -9,3 +9,5 @@ nbproject
 composer.lock
 vendor/bin
 /vendor/
+public/css/*.css
+public/js/*.min.js

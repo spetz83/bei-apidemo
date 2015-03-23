@@ -1,0 +1,37 @@
+/*
+SKELETON LAYOUT
+*/
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+
+.zf-green {
+  color: $zf_green;
+}
+
+.btn-success {
+  background-color: $background_color;
+  background-image: -moz-linear-gradient(top, $gradient_color, $background_color);
+  background-image: -ms-linear-gradient(top, $gradient_color, $background_color);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($gradient_color), to($background_color));
+  background-image: -webkit-linear-gradient(top, $gradient_color, $background_color);
+  background-image: -o-linear-gradient(top, $gradient_color, $background_color);
+  background-image: linear-gradient(top, $gradient_color, $background_color);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#70d900', endColorstr='#57a900', GradientType=0);
+
+  &:hover,&:active,&.active,&.disabled,&[disabled]
+  {
+    background-color: $background_color;
+  }
+}
+
+.container{
+  a.brand {
+    background: url("../img/zf2-logo.png") no-repeat scroll 0 10px transparent;
+    margin-left: 0;
+    padding: 8px 20px 12px 40px;
+  }
+}
+
+
